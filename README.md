@@ -27,9 +27,9 @@
 
 7. Thao tác chạy, dừng, khởi động lại, xem trạng thái:
 
-      sudo systemctl start mysql
+       sudo systemctl start mysql
 
-      sudo systemctl stop mysql
+       sudo systemctl stop mysql
 
        sudo systemctl restart mysql
 
