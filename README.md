@@ -62,3 +62,56 @@
         EXIT;
 
 **Ngoài ra những câu query với cơ sở dữ liệu không nằm trong phạm vi của bài viết này**
+
+<h1># Hướng dẫn cài đặt WordPress trên Ubuntu</h1>
+
+1. Cài đặt Apache:
+
+       sudo apt update
+       sudo apt install apache2
+
+2. Cài mysql như hướng dẫn trên:
+3. 3 Cài đặt PHP:
+
+       sudo apt install php libapache2-mod-php php-mysql
+
+
+4. Khởi động lại Apache để áp dụng thay đổi
+
+       sudo systemctl restart apache2
+
+5. Đăng nhập vào mysql để tạo cơ sở dữ liệu cho wordpress
+
+       sudo mysql -u root -p "password"
+
+Tạo cơ sở dữ liệu:
+
+    CREATE DATABASE mydatabase;
+    CREATE USER 'myuser'@'localhost' IDENTIFIED BY 'mypassword';
+    GRANT ALL PRIVILEGES ON mydatabase.* TO 'myuser'@'localhost';
+    FLUSH PRIVILEGES;
+
+
+6. Cài đặt wordpress:
+
+       cd /tmp
+       wget https://wordpress.org/latest.tar.gz
+       tar -xzvf latest.tar.gz
+       sudo mv wordpress /var/www/html/
+
+7. Thay đổi quyền sở hữu thư mục cho người dùng và nhóm Apache:
+  
+       sudo chown -R www-data:www-data /var/www/html/wordpress
+
+8. Sao chép tệp cấu hình mẫu và cài đặt cơ sở dữ liệu:
+
+       cd /var/www/html/wordpress
+       cp wp-config-sample.php wp-config.php
+       nano wp-config.php
+
+Ở bước này hãy sửa các thông tin về tên database, user, password, host cho phù hợp
+
+Sau đó lưu lại tệp
+
+Mở trình duyệt với địa chỉ là host vừa nhập, sau đó dùng giao diện trên web để tiến hành cấu hình tiếp
+
